@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f0f14;
+      --ink2: #3a3a4a;
+      --muted: #7a7a90;
+      --line: #dddde8;
+      --accent: #1a1a2e;
+      --highlight: #0052cc;
+      --page: #fafafa;
+    }
+
+    html { font-size: 10px; }
+
+    body {
+      background: #e8e8ee;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      background: var(--page);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+      padding: 16mm 16mm 14mm 16mm;
+      position: relative;
+    }
+
+    /* Accent strip */
+    .page::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #0052cc 0%, #00b4d8 100%);
+    }
+
+    /* HEADER */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      margin-bottom: 10mm;
+      padding-bottom: 8mm;
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .header-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.8rem;
+      line-height: 1;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+    .header-title {
+      font-size: 1.15rem;
+      color: var(--highlight);
+      font-weight: 500;
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+    .header-contacts {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 5px;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.9rem; color: var(--ink2);
+      text-decoration: none;
+    }
+    .contact-item:hover { color: var(--highlight); }
+    .contact-icon { font-size: 1rem; }
+
+    /* LAYOUT */
+    .body-grid {
+      display: grid;
+      grid-template-columns: 62mm 1fr;
+      gap: 0 8mm;
+    }
+
+    /* SIDEBAR */
+    .sidebar {}
+    .sidebar-section { margin-bottom: 8mm; }
+
+    /* MAIN */
+    .main {}
+    .main-section { margin-bottom: 7mm; }
+
+    /* SECTION TITLES */
+    .section-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* SUMMARY */
+    .summary {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      line-height: 1.55;
+      color: var(--ink2);
+      margin-bottom: 8mm;
+    }
+
+    /* SKILLS */
+    .skills-group { margin-bottom: 5px; }
+    .skills-group-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+    .skill-tag {
+      padding: 2px 7px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 0.78rem;
+      border-radius: 2px;
+      font-family: 'DM Mono', monospace;
+    }
+    .skill-tag.primary {
+      background: var(--ink);
+      color: white;
+    }
+
+    /* EXPERIENCE */
+    .exp-item { margin-bottom: 6mm; }
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .exp-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .exp-date {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      white-space: nowrap;
+    }
+    .exp-company {
+      font-size: 0.88rem;
+      color: var(--highlight);
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .exp-points { padding-left: 0; list-style: none; }
+    .exp-points li {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      line-height: 1.55;
+      padding-left: 12px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+    .exp-points li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--highlight);
+      font-size: 0.7rem;
+      top: 3px;
+    }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
+    .exp-tag {
+      padding: 1px 6px;
+      border: 1px solid var(--line);
+      font-size: 0.72rem;
+      color: var(--muted);
+      border-radius: 2px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* PROJECTS */
+    .project-item { margin-bottom: 5.5mm; }
+    .project-header {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 3px;
+    }
+    .project-name {
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .project-link {
+      font-size: 0.78rem;
+      color: var(--highlight);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+    }
+    .project-desc {
+      font-size: 0.87rem;
+      color: var(--ink2);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    /* EDUCATION */
+    .edu-item { margin-bottom: 5mm; }
+    .edu-degree {
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 1px;
+    }
+    .edu-uni {
+      font-size: 0.88rem;
+      color: var(--highlight);
+      font-weight: 500;
+    }
+    .edu-year {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ACHIEVEMENTS */
+    .achievement-item {
+      display: flex; gap: 8px;
+      margin-bottom: 4px;
+      font-size: 0.87rem;
+      color: var(--ink2);
+      line-height: 1.45;
+    }
+    .achievement-item::before {
+      content: '★';
+      color: #f59e0b;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      margin-top: 4px;
+    }
+
+    /* SIDEBAR EXTRAS */
+    .sidebar-item { margin-bottom: 3px; }
+    .sidebar-label { font-size: 0.78rem; font-weight: 600; color: var(--ink); }
+    .sidebar-value { font-size: 0.83rem; color: var(--ink2); }
+
+    .lang-item {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 4px;
+    }
+    .lang-name { font-size: 0.87rem; font-weight: 500; color: var(--ink); flex: 1; }
+    .lang-dots { display: flex; gap: 3px; }
+    .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--line);
+    }
+    .dot.filled { background: var(--highlight); }
+
+    /* PRINT */
+    @media print {
+      body { background: white; }
+      .page { margin: 0; box-shadow: none; width: 100%; min-height: 100vh; }
+      .no-print { display: none; }
+    }
+
+    /* Print button */
+    .print-btn {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--highlight); color: white;
+      border: none; padding: 12px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      border-radius: 4px; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,82,204,0.4);
+      z-index: 100;
+    }
+    .print-btn:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn no-print" onclick="window.print()">⬇ Save as PDF</button>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div>
+        <div class="header-name">Your Name</div>
+        <div class="header-title">Full Stack Developer · Node.js · React · Socket.io</div>
+      </div>
+      <div class="header-contacts">
+        <a href="mailto:you@example.com" class="contact-item">
+          <span class="contact-icon">✉</span> you@example.com
+        </a>
+        <a href="https://github.com/yourusername" class="contact-item" target="_blank">
+          <span class="contact-icon">⌥</span> github.com/yourusername
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" class="contact-item" target="_blank">
+          <span class="contact-icon">in</span> linkedin.com/in/yourprofile
+        </a>
+        <span class="contact-item">
+          <span class="contact-icon">◎</span> Vijayawada, India
+        </span>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <div class="summary">
+      Full Stack Developer with hands-on experience building production-grade web applications featuring 
+      real-time communication, media pipelines, and automated CI/CD — currently completing an advanced 
+      internship building a scalable social media platform from scratch in 7 days.
+    </div>
+
+    <!-- BODY GRID -->
+    <div class="body-grid">
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+
+        <!-- SKILLS -->
+        <div class="sidebar-section">
+          <div class="section-title">Technical Skills</div>
+          <div class="skills-group">
+            <div class="skills-group-title">Backend</div>
+            <div class="skills-tags">
+              <span class="skill-tag primary">Node.js</span>
+              <span class="skill-tag primary">Express</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Mongoose</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">Socket.io</span>
+              <span class="skill-tag">JWT</span>
+              <span class="skill-tag">Redis</span>
+            </div>
+          </div>
+          <div class="skills-group" style="margin-top:6px">
+            <div class="skills-group-title">Frontend</div>
+            <div class="skills-tags">
+              <span class="skill-tag primary">React 18</span>
+              <span class="skill-tag primary">JavaScript</span>
+              <span class="skill-tag">Vite</span>
+              <span class="skill-tag">HTML/CSS</span>
+              <span class="skill-tag">Axios</span>
+              <span class="skill-tag">Zustand</span>
+            </div>
+          </div>
+          <div class="skills-group" style="margin-top:6px">
+            <div class="skills-group-title">DevOps & Testing</div>
+            <div class="skills-tags">
+              <span class="skill-tag primary">Docker</span>
+              <span class="skill-tag">GitHub Actions</span>
+              <span class="skill-tag">Jest</span>
+              <span class="skill-tag">Vitest</span>
+              <span class="skill-tag">Supertest</span>
+              <span class="skill-tag">Playwright</span>
+              <span class="skill-tag">Nginx</span>
+            </div>
+          </div>
+          <div class="skills-group" style="margin-top:6px">
+            <div class="skills-group-title">Cloud & Tools</div>
+            <div class="skills-tags">
+              <span class="skill-tag">Cloudinary</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Postman</span>
+              <span class="skill-tag">VS Code</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="sidebar-section">
+          <div class="section-title">Education</div>
+          <div class="edu-item">
+            <div class="edu-degree">B.Tech Computer Science</div>
+            <div class="edu-uni">Your University Name</div>
+            <div class="edu-year">2021 – 2025 · CGPA: 8.x/10</div>
+          </div>
+        </div>
+
+        <!-- LANGUAGES -->
+        <div class="sidebar-section">
+          <div class="section-title">Languages</div>
+          <div class="lang-item">
+            <div class="lang-name">Telugu</div>
+            <div class="lang-dots">
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">English</div>
+            <div class="lang-dots">
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+            </div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">Hindi</div>
+            <div class="lang-dots">
+              <div class="dot filled"></div><div class="dot filled"></div>
+              <div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACHIEVEMENTS -->
+        <div class="sidebar-section">
+          <div class="section-title">Highlights</div>
+          <div class="achievement-item">47 tests written with 91% coverage on internship project</div>
+          <div class="achievement-item">Built real-time chat system serving concurrent WebSocket connections</div>
+          <div class="achievement-item">Implemented full CI/CD pipeline with Docker and GitHub Actions</div>
+          <div class="achievement-item">Completed 7-day advanced full-stack build sprint</div>
+        </div>
+
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="main">
+
+        <!-- INTERNSHIP EXPERIENCE -->
+        <div class="main-section">
+          <div class="section-title">Experience</div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div class="exp-title">Full Stack Developer Intern</div>
+              <div class="exp-date">2024 – Present</div>
+            </div>
+            <div class="exp-company">Company Name · Vijayawada, Andhra Pradesh</div>
+            <ul class="exp-points">
+              <li>Built SocialSphere — a production-grade social media platform from scratch in 7 days, covering real-time features, media uploads, testing, and CI/CD</li>
+              <li>Implemented Socket.io real-time messaging with typing indicators, online presence, and push notifications for 5+ event types</li>
+              <li>Integrated Cloudinary for image/video upload pipeline with automatic transformations, CDN delivery, and secure deletion</li>
+              <li>Wrote 47 automated tests (unit + integration + E2E) achieving 91% backend code coverage using Jest, Supertest, and MongoMemoryServer</li>
+              <li>Built CI/CD pipeline with GitHub Actions: automated testing, Trivy security scanning, Docker multi-stage builds, and staged deployment</li>
+              <li>Applied layered security: JWT with refresh tokens, account lockout, Helmet headers, rate limiting, NoSQL injection sanitization</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="exp-tag">Node.js</span>
+              <span class="exp-tag">React</span>
+              <span class="exp-tag">Socket.io</span>
+              <span class="exp-tag">MongoDB</span>
+              <span class="exp-tag">Cloudinary</span>
+              <span class="exp-tag">Docker</span>
+              <span class="exp-tag">Jest</span>
+              <span class="exp-tag">GitHub Actions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="main-section">
+          <div class="section-title">Projects</div>
+
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-name">SocialSphere Platform</div>
+              <a href="https://github.com/yourusername/social-media-platform" class="project-link" target="_blank">github ↗</a>
+            </div>
+            <div class="project-desc">
+              Full-stack social media platform with real-time chat, post feeds, notifications, Cloudinary media, 
+              JWT auth, and automated CI/CD. Built in 7 days as part of internship. 14 REST endpoints, 47 tests, 91% coverage.
+            </div>
+            <div class="exp-tags">
+              <span class="exp-tag">Node.js</span><span class="exp-tag">Express</span>
+              <span class="exp-tag">React 18</span><span class="exp-tag">Socket.io</span>
+              <span class="exp-tag">MongoDB</span><span class="exp-tag">Cloudinary</span>
+              <span class="exp-tag">Docker</span><span class="exp-tag">Jest</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-name">Project Two — [Your other project]</div>
+              <a href="#" class="project-link">github ↗</a>
+            </div>
+            <div class="project-desc">
+              Brief 1–2 sentence description of what it does, what problem it solves, and the key technologies.
+              Mention scale, users, or performance metrics if available.
+            </div>
+            <div class="exp-tags">
+              <span class="exp-tag">React</span><span class="exp-tag">Node.js</span>
+              <span class="exp-tag">PostgreSQL</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-name">Project Three — [Your other project]</div>
+              <a href="#" class="project-link">github ↗</a>
+            </div>
+            <div class="project-desc">
+              Brief description. Focus on the hardest technical challenge you solved and how you solved it.
+            </div>
+            <div class="exp-tags">
+              <span class="exp-tag">Python</span><span class="exp-tag">Flask</span>
+              <span class="exp-tag">Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- COURSEWORK / CERTS -->
+        <div class="main-section">
+          <div class="section-title">Relevant Coursework & Certifications</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 16px">
+            <div style="font-size:0.87rem;color:var(--ink2);padding:3px 0;border-bottom:1px solid var(--line)">Data Structures & Algorithms</div>
+            <div style="font-size:0.87rem;color:var(--ink2);padding:3px 0;border-bottom:1px solid var(--line)">Database Management Systems</div>
+            <div style="font-size:0.87rem;color:var(--ink2);padding:3px 0;border-bottom:1px solid var(--line)">Operating Systems</div>
+            <div style="font-size:0.87rem;color:var(--ink2);padding:3px 0;border-bottom:1px solid var(--line)">Computer Networks</div>
+            <div style="font-size:0.87rem;color:var(--ink2);padding:3px 0;border-bottom:1px solid var(--line)">Web Technologies</div>
+            <div style="font-size:0.87rem;color:var(--ink2);padding:3px 0;border-bottom:1px solid var(--line)">Software Engineering</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

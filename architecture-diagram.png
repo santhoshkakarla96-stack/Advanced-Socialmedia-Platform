@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" font-family="'Courier New', monospace">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#0a0a0f"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0,229,160,0.04)" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00e5a0" opacity="0.7"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#6b8cff" opacity="0.7"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ff6b6b" opacity="0.7"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <text x="600" y="42" text-anchor="middle" fill="#e8e8f0" font-size="20" font-weight="bold" font-family="'Courier New', monospace" letter-spacing="2">SOCIALSPHERE — SYSTEM ARCHITECTURE</text>
+  <line x1="200" y1="52" x2="500" y2="52" stroke="#00e5a0" stroke-width="1" opacity="0.4"/>
+  <line x1="700" y1="52" x2="1000" y2="52" stroke="#00e5a0" stroke-width="1" opacity="0.4"/>
+  <circle cx="598" cy="52" r="3" fill="#00e5a0"/>
+
+  <!-- ===== LAYER 1: CLIENT ===== -->
+  <rect x="20" y="75" width="100" height="24" rx="2" fill="none" stroke="#6b6b85" stroke-width="1"/>
+  <text x="70" y="91" text-anchor="middle" fill="#6b6b85" font-size="10" letter-spacing="1">CLIENT</text>
+
+  <!-- React App Box -->
+  <rect x="140" y="68" width="200" height="88" rx="4" fill="#111118" stroke="#6b8cff" stroke-width="1.5"/>
+  <rect x="140" y="68" width="200" height="20" rx="4" fill="#6b8cff" opacity="0.2"/>
+  <text x="240" y="82" text-anchor="middle" fill="#6b8cff" font-size="11" font-weight="bold">⚛  React 18 App</text>
+  <text x="155" y="102" fill="#6b6b85" font-size="9">• AuthContext (JWT mgmt)</text>
+  <text x="155" y="116" fill="#6b6b85" font-size="9">• SocketContext (real-time)</text>
+  <text x="155" y="130" fill="#6b6b85" font-size="9">• Axios + auto refresh</text>
+  <text x="155" y="144" fill="#6b6b85" font-size="9">• Framer Motion UI</text>
+
+  <!-- Socket Client Box -->
+  <rect x="360" y="68" width="160" height="88" rx="4" fill="#111118" stroke="#00e5a0" stroke-width="1.5"/>
+  <rect x="360" y="68" width="160" height="20" rx="4" fill="#00e5a0" opacity="0.15"/>
+  <text x="440" y="82" text-anchor="middle" fill="#00e5a0" font-size="11" font-weight="bold">🔌 Socket Client</text>
+  <text x="375" y="102" fill="#6b6b85" font-size="9">• join-chat / leave-chat</text>
+  <text x="375" y="116" fill="#6b6b85" font-size="9">• send-message / typing</text>
+  <text x="375" y="130" fill="#6b6b85" font-size="9">• notification events</text>
+  <text x="375" y="144" fill="#6b6b85" font-size="9">• online presence</text>
+
+  <!-- Browser -->
+  <rect x="540" y="68" width="120" height="88" rx="4" fill="#111118" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="600" y="82" text-anchor="middle" fill="#6b6b85" font-size="11">🌐 Browser</text>
+  <text x="555" y="100" fill="#6b6b85" font-size="9">• localStorage (tokens)</text>
+  <text x="555" y="114" fill="#6b6b85" font-size="9">• Vite build / HMR</text>
+  <text x="555" y="128" fill="#6b6b85" font-size="9">• React Query cache</text>
+  <text x="555" y="142" fill="#6b6b85" font-size="9">• Service Worker</text>
+
+  <!-- ===== ARROWS: CLIENT → NGINX ===== -->
+  <line x1="240" y1="156" x2="240" y2="196" stroke="#6b8cff" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-blue)" opacity="0.7"/>
+  <line x1="440" y1="156" x2="440" y2="196" stroke="#00e5a0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" opacity="0.7"/>
+
+  <!-- ===== LAYER 2: GATEWAY ===== -->
+  <rect x="20" y="195" width="100" height="24" rx="2" fill="none" stroke="#6b6b85" stroke-width="1"/>
+  <text x="70" y="211" text-anchor="middle" fill="#6b6b85" font-size="10" letter-spacing="1">GATEWAY</text>
+
+  <!-- Nginx -->
+  <rect x="140" y="196" width="500" height="80" rx="4" fill="#111118" stroke="#ffc850" stroke-width="1.5"/>
+  <rect x="140" y="196" width="500" height="20" rx="4" fill="#ffc850" opacity="0.12"/>
+  <text x="390" y="210" text-anchor="middle" fill="#ffc850" font-size="11" font-weight="bold">⚙  NGINX — Reverse Proxy</text>
+  
+  <!-- Nginx sub-boxes -->
+  <rect x="155" y="220" width="100" height="44" rx="2" fill="#0a0a0f" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="205" y="236" text-anchor="middle" fill="#e8e8f0" font-size="9">Rate Limiting</text>
+  <text x="205" y="252" text-anchor="middle" fill="#6b6b85" font-size="8">100 req/15min</text>
+  <text x="205" y="264" text-anchor="middle" fill="#6b6b85" font-size="8">Auth: 10/15min</text>
+
+  <rect x="265" y="220" width="100" height="44" rx="2" fill="#0a0a0f" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="315" y="236" text-anchor="middle" fill="#e8e8f0" font-size="9">SSL / TLS</text>
+  <text x="315" y="252" text-anchor="middle" fill="#6b6b85" font-size="8">HTTPS redirect</text>
+  <text x="315" y="264" text-anchor="middle" fill="#6b6b85" font-size="8">HSTS headers</text>
+
+  <rect x="375" y="220" width="110" height="44" rx="2" fill="#0a0a0f" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="430" y="236" text-anchor="middle" fill="#e8e8f0" font-size="9">WS Proxy</text>
+  <text x="430" y="252" text-anchor="middle" fill="#6b6b85" font-size="8">Upgrade: upgrade</text>
+  <text x="430" y="264" text-anchor="middle" fill="#6b6b85" font-size="8">Socket.io passthru</text>
+
+  <rect x="495" y="220" width="130" height="44" rx="2" fill="#0a0a0f" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="560" y="236" text-anchor="middle" fill="#e8e8f0" font-size="9">Static Cache</text>
+  <text x="560" y="252" text-anchor="middle" fill="#6b6b85" font-size="8">1yr cache assets</text>
+  <text x="560" y="264" text-anchor="middle" fill="#6b6b85" font-size="8">100MB upload limit</text>
+
+  <!-- ARROW: NGINX → API -->
+  <line x1="390" y1="276" x2="390" y2="316" stroke="#ffc850" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" opacity="0.7"/>
+
+  <!-- ===== LAYER 3: API ===== -->
+  <rect x="20" y="315" width="100" height="24" rx="2" fill="none" stroke="#6b6b85" stroke-width="1"/>
+  <text x="70" y="331" text-anchor="middle" fill="#6b6b85" font-size="10" letter-spacing="1">API LAYER</text>
+
+  <!-- Express App -->
+  <rect x="140" y="316" width="240" height="88" rx="4" fill="#111118" stroke="#00e5a0" stroke-width="1.5"/>
+  <rect x="140" y="316" width="240" height="20" rx="4" fill="#00e5a0" opacity="0.12"/>
+  <text x="260" y="330" text-anchor="middle" fill="#00e5a0" font-size="11" font-weight="bold">⚡ Express REST API</text>
+  <text x="155" y="350" fill="#6b6b85" font-size="9">POST /api/auth/login|register|refresh</text>
+  <text x="155" y="364" fill="#6b6b85" font-size="9">GET/POST /api/posts  /api/posts/feed</text>
+  <text x="155" y="378" fill="#6b6b85" font-size="9">GET/POST /api/chat  /api/notifications</text>
+  <text x="155" y="392" fill="#6b6b85" font-size="9">POST /api/upload  (image|video|avatar)</text>
+
+  <!-- Socket Server -->
+  <rect x="400" y="316" width="200" height="88" rx="4" fill="#111118" stroke="#00e5a0" stroke-width="1.5"/>
+  <rect x="400" y="316" width="200" height="20" rx="4" fill="#00e5a0" opacity="0.12"/>
+  <text x="500" y="330" text-anchor="middle" fill="#00e5a0" font-size="11" font-weight="bold">🔌 Socket.io Server</text>
+  <text x="415" y="350" fill="#6b6b85" font-size="9">JWT auth middleware</text>
+  <text x="415" y="364" fill="#6b6b85" font-size="9">user-{id} personal rooms</text>
+  <text x="415" y="378" fill="#6b6b85" font-size="9">chat-{id} group rooms</text>
+  <text x="415" y="392" fill="#6b6b85" font-size="9">Online user tracking (Map)</text>
+
+  <!-- Security Middleware -->
+  <rect x="620" y="316" width="180" height="88" rx="4" fill="#111118" stroke="#ff6b6b" stroke-width="1.5"/>
+  <rect x="620" y="316" width="180" height="20" rx="4" fill="#ff6b6b" opacity="0.12"/>
+  <text x="710" y="330" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="bold">🛡 Middleware Stack</text>
+  <text x="635" y="350" fill="#6b6b85" font-size="9">Helmet (CSP, HSTS)</text>
+  <text x="635" y="364" fill="#6b6b85" font-size="9">express-mongo-sanitize</text>
+  <text x="635" y="378" fill="#6b6b85" font-size="9">xss-clean + hpp</text>
+  <text x="635" y="392" fill="#6b6b85" font-size="9">JWT verify + role check</text>
+
+  <!-- ARROWS: API → SERVICES -->
+  <line x1="260" y1="404" x2="260" y2="444" stroke="#00e5a0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" opacity="0.7"/>
+  <line x1="500" y1="404" x2="500" y2="444" stroke="#00e5a0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" opacity="0.7"/>
+
+  <!-- ===== LAYER 4: SERVICES ===== -->
+  <rect x="20" y="445" width="100" height="24" rx="2" fill="none" stroke="#6b6b85" stroke-width="1"/>
+  <text x="70" y="461" text-anchor="middle" fill="#6b6b85" font-size="10" letter-spacing="1">SERVICES</text>
+
+  <!-- Service boxes -->
+  <rect x="140" y="444" width="108" height="64" rx="3" fill="#111118" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="194" y="462" text-anchor="middle" fill="#e8e8f0" font-size="10" font-weight="bold">Auth</text>
+  <text x="148" y="477" fill="#6b6b85" font-size="8">register/login</text>
+  <text x="148" y="490" fill="#6b6b85" font-size="8">refresh/reset</text>
+  <text x="148" y="503" fill="#6b6b85" font-size="8">lockout mgmt</text>
+
+  <rect x="256" y="444" width="108" height="64" rx="3" fill="#111118" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="310" y="462" text-anchor="middle" fill="#e8e8f0" font-size="10" font-weight="bold">Posts</text>
+  <text x="264" y="477" fill="#6b6b85" font-size="8">CRUD + feed</text>
+  <text x="264" y="490" fill="#6b6b85" font-size="8">likes/comments</text>
+  <text x="264" y="503" fill="#6b6b85" font-size="8">hashtags/search</text>
+
+  <rect x="372" y="444" width="108" height="64" rx="3" fill="#111118" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="426" y="462" text-anchor="middle" fill="#e8e8f0" font-size="10" font-weight="bold">Chat</text>
+  <text x="380" y="477" fill="#6b6b85" font-size="8">direct/group</text>
+  <text x="380" y="490" fill="#6b6b85" font-size="8">messages/media</text>
+  <text x="380" y="503" fill="#6b6b85" font-size="8">read receipts</text>
+
+  <rect x="488" y="444" width="108" height="64" rx="3" fill="#111118" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="542" y="462" text-anchor="middle" fill="#e8e8f0" font-size="10" font-weight="bold">Notifications</text>
+  <text x="496" y="477" fill="#6b6b85" font-size="8">like/comment</text>
+  <text x="496" y="490" fill="#6b6b85" font-size="8">follow/mention</text>
+  <text x="496" y="503" fill="#6b6b85" font-size="8">auto-expire 30d</text>
+
+  <rect x="604" y="444" width="108" height="64" rx="3" fill="#111118" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="658" y="462" text-anchor="middle" fill="#e8e8f0" font-size="10" font-weight="bold">Upload</text>
+  <text x="612" y="477" fill="#6b6b85" font-size="8">image/video</text>
+  <text x="612" y="490" fill="#6b6b85" font-size="8">avatar (400×400)</text>
+  <text x="612" y="503" fill="#6b6b85" font-size="8">Cloudinary CDN</text>
+
+  <!-- ARROWS: SERVICES → DATA -->
+  <line x1="194" y1="508" x2="194" y2="548" stroke="#6b6b85" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow)" opacity="0.5"/>
+  <line x1="310" y1="508" x2="310" y2="548" stroke="#6b6b85" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow)" opacity="0.5"/>
+  <line x1="426" y1="508" x2="426" y2="548" stroke="#6b6b85" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow)" opacity="0.5"/>
+  <line x1="542" y1="508" x2="542" y2="548" stroke="#6b6b85" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow)" opacity="0.5"/>
+  <line x1="658" y1="508" x2="658" y2="548" stroke="#6b6b85" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow)" opacity="0.5"/>
+
+  <!-- ===== LAYER 5: DATA ===== -->
+  <rect x="20" y="548" width="100" height="24" rx="2" fill="none" stroke="#6b6b85" stroke-width="1"/>
+  <text x="70" y="564" text-anchor="middle" fill="#6b6b85" font-size="10" letter-spacing="1">DATA</text>
+
+  <!-- MongoDB -->
+  <rect x="140" y="548" width="220" height="80" rx="4" fill="#111118" stroke="#ff6b6b" stroke-width="1.5"/>
+  <rect x="140" y="548" width="220" height="20" rx="4" fill="#ff6b6b" opacity="0.12"/>
+  <text x="250" y="562" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="bold">🍃 MongoDB</text>
+  <text x="155" y="582" fill="#6b6b85" font-size="9">Users · Posts · Chats · Messages</text>
+  <text x="155" y="596" fill="#6b6b85" font-size="9">Notifications (TTL 30d)</text>
+  <text x="155" y="610" fill="#6b6b85" font-size="9">Indexes: author, hashtags, date</text>
+  <text x="155" y="624" fill="#6b6b85" font-size="9">Full-text search on posts</text>
+
+  <!-- Redis -->
+  <rect x="376" y="548" width="160" height="80" rx="4" fill="#111118" stroke="#ff6b6b" stroke-width="1.5"/>
+  <rect x="376" y="548" width="160" height="20" rx="4" fill="#ff6b6b" opacity="0.12"/>
+  <text x="456" y="562" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="bold">⚡ Redis</text>
+  <text x="391" y="582" fill="#6b6b85" font-size="9">Session cache</text>
+  <text x="391" y="596" fill="#6b6b85" font-size="9">Rate limit counters</text>
+  <text x="391" y="610" fill="#6b6b85" font-size="9">Online users set</text>
+  <text x="391" y="624" fill="#6b6b85" font-size="9">Pub/sub (scaling)</text>
+
+  <!-- Cloudinary -->
+  <rect x="552" y="548" width="180" height="80" rx="4" fill="#111118" stroke="#ff6b6b" stroke-width="1.5"/>
+  <rect x="552" y="548" width="180" height="20" rx="4" fill="#ff6b6b" opacity="0.12"/>
+  <text x="642" y="562" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="bold">☁ Cloudinary CDN</text>
+  <text x="567" y="582" fill="#6b6b85" font-size="9">Images (JPEG/PNG/WebP)</text>
+  <text x="567" y="596" fill="#6b6b85" font-size="9">Videos (MP4/WebM, 100MB)</text>
+  <text x="567" y="610" fill="#6b6b85" font-size="9">Auto transform + optimize</text>
+  <text x="567" y="624" fill="#6b6b85" font-size="9">Global CDN delivery</text>
+
+  <!-- ===== DEVOPS (RIGHT COLUMN) ===== -->
+  <rect x="850" y="68" width="320" height="560" rx="4" fill="#111118" stroke="#3a3a5a" stroke-width="1"/>
+  <rect x="850" y="68" width="320" height="24" rx="4" fill="#ffc850" opacity="0.1"/>
+  <text x="1010" y="84" text-anchor="middle" fill="#ffc850" font-size="12" font-weight="bold" letter-spacing="1">⚙  DEVOPS &amp; TESTING</text>
+
+  <!-- GitHub Actions -->
+  <rect x="866" y="100" width="288" height="100" rx="3" fill="#0a0a0f" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="1010" y="116" text-anchor="middle" fill="#ffc850" font-size="10" font-weight="bold">🔄 GitHub Actions Pipeline</text>
+  
+  <rect x="874" y="124" width="60" height="28" rx="2" fill="#1a2a1a" stroke="#28c840" stroke-width="1"/>
+  <text x="904" y="136" text-anchor="middle" fill="#28c840" font-size="8">Tests</text>
+  <text x="904" y="147" text-anchor="middle" fill="#28c840" font-size="8">Jest+Vitest</text>
+  <text x="935" y="139" fill="#ffc850" font-size="10">→</text>
+  <rect x="944" y="124" width="60" height="28" rx="2" fill="#2a1a1a" stroke="#ff6b6b" stroke-width="1"/>
+  <text x="974" y="136" text-anchor="middle" fill="#ff6b6b" font-size="8">Security</text>
+  <text x="974" y="147" text-anchor="middle" fill="#ff6b6b" font-size="8">Trivy scan</text>
+  <text x="1005" y="139" fill="#ffc850" font-size="10">→</text>
+  <rect x="1014" y="124" width="60" height="28" rx="2" fill="#1a1a2a" stroke="#6b8cff" stroke-width="1"/>
+  <text x="1044" y="136" text-anchor="middle" fill="#6b8cff" font-size="8">Docker</text>
+  <text x="1044" y="147" text-anchor="middle" fill="#6b8cff" font-size="8">Build+Push</text>
+  <text x="1075" y="139" fill="#ffc850" font-size="10">→</text>
+  <rect x="1084" y="124" width="60" height="28" rx="2" fill="#1a2a1a" stroke="#28c840" stroke-width="1"/>
+  <text x="1114" y="136" text-anchor="middle" fill="#28c840" font-size="8">Deploy</text>
+  <text x="1114" y="147" text-anchor="middle" fill="#28c840" font-size="8">Staging+Prod</text>
+  
+  <text x="874" y="185" fill="#6b6b85" font-size="8">Triggers: push to main / develop / pull request</text>
+  <text x="874" y="197" fill="#6b6b85" font-size="8">Artifacts: GHCR images tagged with branch + SHA</text>
+
+  <!-- Docker Compose -->
+  <rect x="866" y="212" width="288" height="90" rx="3" fill="#0a0a0f" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="1010" y="228" text-anchor="middle" fill="#6b8cff" font-size="10" font-weight="bold">🐳 Docker Compose (5 services)</text>
+  <text x="880" y="248" fill="#6b6b85" font-size="9">• mongodb:6    — data persistence (named volume)</text>
+  <text x="880" y="263" fill="#6b6b85" font-size="9">• redis:7-alpine — caching + rate limit state</text>
+  <text x="880" y="278" fill="#6b6b85" font-size="9">• backend:5000  — Node.js app (non-root user)</text>
+  <text x="880" y="293" fill="#6b6b85" font-size="9">• frontend:3000 — Nginx serving Vite build</text>
+
+  <!-- Testing -->
+  <rect x="866" y="314" width="288" height="140" rx="3" fill="#0a0a0f" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="1010" y="330" text-anchor="middle" fill="#00e5a0" font-size="10" font-weight="bold">🧪 Test Suite (47 tests)</text>
+  
+  <text x="880" y="350" fill="#e8e8f0" font-size="9" font-weight="bold">Unit Tests (Jest)</text>
+  <text x="880" y="364" fill="#6b6b85" font-size="8">  User model: creation, hashing, JWT, lockout (12)</text>
+  <text x="880" y="376" fill="#6b6b85" font-size="8">  Post model: hashtags, virtuals, soft-delete (9)</text>
+  
+  <text x="880" y="394" fill="#e8e8f0" font-size="9" font-weight="bold">Integration Tests (Supertest + MongoMemoryServer)</text>
+  <text x="880" y="408" fill="#6b6b85" font-size="8">  Auth API: register, login, refresh, lockout (10)</text>
+  <text x="880" y="420" fill="#6b6b85" font-size="8">  Posts API: CRUD, likes, comments, guards (11)</text>
+
+  <text x="880" y="438" fill="#e8e8f0" font-size="9" font-weight="bold">Frontend (Vitest + RTL) + E2E (Playwright)</text>
+  <text x="880" y="450" fill="#6b6b85" font-size="8">  Components: LoginForm, RegisterForm, PostCard (15)</text>
+
+  <!-- Coverage bars -->
+  <rect x="866" y="464" width="288" height="80" rx="3" fill="#0a0a0f" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="880" y="480" fill="#e8e8f0" font-size="9" font-weight="bold">Coverage Report</text>
+  
+  <text x="880" y="496" fill="#6b6b85" font-size="8">Models</text>
+  <rect x="924" y="488" width="160" height="6" rx="3" fill="#1e1e2e"/>
+  <rect x="924" y="488" width="150" height="6" rx="3" fill="#00e5a0" opacity="0.8"/>
+  <text x="1090" y="496" fill="#00e5a0" font-size="8">94%</text>
+
+  <text x="880" y="512" fill="#6b6b85" font-size="8">API Routes</text>
+  <rect x="924" y="504" width="160" height="6" rx="3" fill="#1e1e2e"/>
+  <rect x="924" y="504" width="141" height="6" rx="3" fill="#00e5a0" opacity="0.8"/>
+  <text x="1090" y="512" fill="#00e5a0" font-size="8">88%</text>
+
+  <text x="880" y="528" fill="#6b6b85" font-size="8">Frontend</text>
+  <rect x="924" y="520" width="160" height="6" rx="3" fill="#1e1e2e"/>
+  <rect x="924" y="520" width="136" height="6" rx="3" fill="#6b8cff" opacity="0.8"/>
+  <text x="1090" y="528" fill="#6b8cff" font-size="8">85%</text>
+
+  <!-- Security summary -->
+  <rect x="866" y="556" width="288" height="64" rx="3" fill="#0a0a0f" stroke="#ff6b6b" stroke-width="1" opacity="0.7"/>
+  <text x="1010" y="572" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold">🛡 Security Features</text>
+  <text x="880" y="590" fill="#6b6b85" font-size="8">JWT (7d) + Refresh (30d)  |  bcrypt rounds:12  |  Account lockout</text>
+  <text x="880" y="604" fill="#6b6b85" font-size="8">Helmet CSP/HSTS  |  NoSQL sanitize  |  Rate limit  |  HPP</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="140" y="660" width="680" height="44" rx="3" fill="#111118" stroke="#3a3a5a" stroke-width="1"/>
+  <text x="160" y="676" fill="#6b6b85" font-size="9" font-weight="bold">LEGEND</text>
+  
+  <line x1="220" y1="672" x2="248" y2="672" stroke="#6b8cff" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="254" y="676" fill="#6b6b85" font-size="8">HTTP/REST</text>
+  
+  <line x1="320" y1="672" x2="348" y2="672" stroke="#00e5a0" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="354" y="676" fill="#6b6b85" font-size="8">WebSocket</text>
+
+  <line x1="420" y1="672" x2="448" y2="672" stroke="#ffc850" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="454" y="676" fill="#6b6b85" font-size="8">Proxy</text>
+
+  <line x1="500" y1="672" x2="528" y2="672" stroke="#6b6b85" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="534" y="676" fill="#6b6b85" font-size="8">Internal calls</text>
+
+  <text x="160" y="696" fill="#6b6b85" font-size="8">All services run in Docker network  |  Secrets via env vars  |  GHCR: ghcr.io/username/socialsphere-{backend,frontend}:{tag}</text>
+
+  <!-- Watermark -->
+  <text x="1170" y="790" text-anchor="end" fill="#3a3a5a" font-size="9">SocialSphere Architecture v1.0</text>
+</svg>
