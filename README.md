@@ -25,28 +25,28 @@ A full-stack social media platform built with Node.js, React, Socket.io, and Mon
 social-media-platform/
 ├── backend/
 │   ├── src/
-│   │   ├── config/          # DB, Cloudinary setup
-│   │   ├── controllers/     # Route handlers
-│   │   ├── middleware/      # Auth, error handling
-│   │   ├── models/          # Mongoose schemas
-│   │   ├── routes/          # API route definitions
-│   │   ├── socket/          # Socket.io manager
-│   │   ├── utils/           # Helpers
-│   │   ├── app.js           # Express app
-│   │   └── server.js        # Entry point
+│   │   ├── config/          
+│   │   ├── controllers/    
+│   │   ├── middleware/     
+│   │   ├── models/          
+│   │   ├── routes/         
+│   │   ├── socket/         
+│   │   ├── utils/          
+│   │   ├── app.js           
+│   │   └── server.js        
 │   └── tests/
-│       ├── unit/            # Model/util tests
-│       └── integration/     # API endpoint tests
+│       ├── unit/            
+│       └── integration/     
 ├── frontend/
 │   ├── src/
-│   │   ├── components/      # React components
-│   │   ├── contexts/        # Auth, Socket contexts
-│   │   ├── hooks/           # Custom React hooks
-│   │   ├── pages/           # Route pages
-│   │   └── services/        # API service layer
-│   └── tests/               # Component & hook tests
+│   │   ├── components/     
+│   │   ├── contexts/        
+│   │   ├── hooks/         
+│   │   ├── pages/          
+│   │   └── services/        
+│   └── tests/              
 ├── tests/
-│   └── e2e/                 # Playwright E2E tests
+│   └── e2e/               
 ├── docker/
 │   ├── backend.Dockerfile
 │   ├── frontend.Dockerfile
@@ -54,7 +54,7 @@ social-media-platform/
 │   └── nginx.conf
 └── .github/
     └── workflows/
-        └── ci-cd.yml        # Full CI/CD pipeline
+        └── ci-cd.yml        
 ```
 
 ---
